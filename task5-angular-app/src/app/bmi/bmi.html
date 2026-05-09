@@ -1,0 +1,26 @@
+<h2>BMI Calculator</h2>
+
+<form [formGroup]="form" (ngSubmit)="calculate()">
+    <label>Height (cm)</label>
+    <input type="number" formControlName="height">
+
+    <div *ngIf="form.controls.height.invalid && form.controls.height.touched">
+        Enter valid height (50 until 250 cm)
+    </div>
+
+    <label>Weight (kg)</label>
+    <input type="number" formControlName="weight">
+
+    <div *ngIf="form.controls.weight.invalid && form.controls.weight.touched">
+        Enter valid weight (10 until 300 kg)
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">
+        Calculate
+    </button>
+</form>
+
+<div *ngIf="result" class="result">
+    <h3>BMI: {{result | number:'1.1-1'}}</h3>
+    <p>Category: {{category}}</p>
+</div>
